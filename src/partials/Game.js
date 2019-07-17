@@ -1,4 +1,4 @@
-import {SVG_NS} from '../settings' //dont need settings
+import {SVG_NS, KEYS} from '../settings' //dont need settings
 import Board from './Board';
 import Paddle from './Paddle';
 
@@ -22,7 +22,9 @@ export default class Game {
       this.paddleWidth,
       this.paddleHeight,
       this.boardGap,
-      ((this.height - this.paddleHeight) / 2) //center perfectly in the middle
+      ((this.height - this.paddleHeight) / 2), //center perfectly in the middle
+      KEYS.a,
+      KEYS.z
     )
 
     //Player 2 Paddle
@@ -31,8 +33,9 @@ export default class Game {
       this.paddleWidth, // order makes a difference - must be same order as constructor
       this.paddleHeight,
       (this.width - this.boardGap - this.paddleWidth),// board width - board gap - paddle width to put on the other end
-      ((this.height - this.paddleHeight) / 2) //center perfectly in the middle
-
+      ((this.height - this.paddleHeight) / 2), //center perfectly in the middle
+      KEYS.up,
+      KEYS.down
     )
 
 

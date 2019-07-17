@@ -1,14 +1,25 @@
 import {SVG_NS} from '../settings'
 
 export default class Paddle {
-    constructor(boardHeight,width, height, x, y) {
-    this.boardHeight = boardHeight
-    this.width = width
-    this.height = height
-    this.x = x
-    this.y = y
-    this.speed = 10
-    this.score = 0
+    constructor(boardHeight,width, height, x, y, up, down) { //coordinates with game.js
+        this.boardHeight = boardHeight
+        this.width = width
+        this.height = height
+        this.x = x
+        this.y = y
+        this.speed = 10
+        this.score = 0
+
+        document.addEventListener('keydown', event => {
+            switch(event.key) {
+                case up: // when its up which is defined in settings js 
+                    this.y = Math.max(0,this.y - this.speed) //movement for the paddles -- Math Max puts the limit.
+                break // exit switch statement
+                case down:
+                    this.y = Math.min(this.boardHeight - this.height,this.y + this.speed) //movement for paddle to go down // it will pick one of the two for the limit
+                break
+            }
+        })
     }
 
     render(svg) {
