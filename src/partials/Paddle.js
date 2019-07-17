@@ -9,8 +9,9 @@ export default class Paddle {
         this.y = y
         this.speed = 10
         this.score = 0
+        // let this = this // binding this a variable (this)
 
-        document.addEventListener('keydown', event => {
+        document.addEventListener('keydown', event=>  { // function(eventTHIS was referring to the keydown function
             switch(event.key) {
                 case up: // when its up which is defined in settings js 
                     this.y = Math.max(0,this.y - this.speed) //movement for the paddles -- Math Max puts the limit.
