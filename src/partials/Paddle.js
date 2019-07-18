@@ -29,7 +29,6 @@ export default class Paddle {
         let topY = y
         let bottomY = y + height
         return[leftX, rightX, topY, bottomY]
-
     }
 
 
@@ -41,9 +40,5 @@ export default class Paddle {
         rect.setAttributeNS(null,'x', this.x) // x of the top left corner
         rect.setAttributeNS(null,'y', this.y) // y of the top left corner
         svg.appendChild(rect);
-
     }
-
-
-
 }

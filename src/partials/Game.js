@@ -19,7 +19,9 @@ export default class Game {
     this.boardGap = 10
 
     this.board = new Board(this.width, this.height) // this is from game in index.js
-    this.ball = new Ball(8, this.width, this.height)
+    this.ball1 = new Ball(8, this.width, this.height)
+    this.ball2 = new Ball(12, this.width, this.height)
+
 
     //Player 1 Paddle
     this.player1 = new Paddle(
@@ -43,8 +45,8 @@ export default class Game {
       KEYS.down
     )
 
-    this.score1 = new Score(this.width /2 - 50, 30, 30) // score positioning 
-    this.score2 = new Score(this.width /2 + 50, 30, 30)
+    this.score1 = new Score(this.width /2 - 80, 50, 40) // score positioning 
+    this.score2 = new Score(this.width /2 + 30, 50, 40)
         
 
       // event listener to pause game 
@@ -68,7 +70,7 @@ export default class Game {
       return
     }
 
-    // clear board 
+    // clear board g
    this.gameElement.innerHTML = '' // so canvas doesnt stack on top of each other because of the infinite loop
    // create SVG element for the board
 
@@ -82,7 +84,8 @@ export default class Game {
    this.board.render(svg)
    this.player1.render(svg)
    this.player2.render(svg)
-   this.ball.render(svg, this.player1, this.player2)
+   this.ball1.render(svg, this.player1, this.player2)
+   this.ball2.render(svg, this.player1, this.player2) 
 
 
    this.score1.render(svg, this.player1.score)

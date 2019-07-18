@@ -1,4 +1,5 @@
 import {SVG_NS} from '../settings'
+import pingSound from '../../public/sounds/pong-02.wav'
 
 export default class Ball {
     constructor(radius, boardWidth, boardHeight) {
@@ -6,6 +7,7 @@ export default class Ball {
     this.boardWidth = boardWidth
     this.boardHeight = boardHeight
     this.direction = 1 // direction of the ball
+    this.ping = new Audio(pingSound)
     
     this.reset()
     }
@@ -35,6 +37,8 @@ export default class Ball {
                 && (this.y >= topY && this.y <= bottomY)
             ) {
                 this.vx = -this.vx;
+                this.ping.play()
+
             }
         } else {
                 let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height)
@@ -45,6 +49,7 @@ export default class Ball {
                 && (this.y >= topY && this.y <= bottomY)
             ) {
                 this.vx = -this.vx;
+                this.ping.play()
             }
         } 
     }
