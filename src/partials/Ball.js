@@ -24,11 +24,34 @@ export default class Ball {
         console.log(this.vx)
     }
 
+    wallCollision(){
+        const hitTop = this.y - this.radius <= 0 // so the ball hits the collision  and doesnt hit the center of the ball
+        const hitBottom = this.y + this.radius >= this.boardHeight
+
+        if(hitTop || hitBottom) {
+        this.vy = -this.vy    
+    }
+
+        const hitRight = this.x - this.radius <= 0
+        const hitLeft = this.x + this.radius >= this.boardWidth
+
+        if(hitRight || hitLeft) {
+            this.vx = -this.vx
+        }
+
+    }
+
+
+
+
+
+
+
     render(svg) {
         this.x += this.vx 
         this.y += this.vy 
-        console.log(this.x)
-        console.log(this.y)
+    
+        this.wallCollision();
 
 
         let circle = document.createElementNS(SVG_NS, 'circle')
