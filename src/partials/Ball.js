@@ -24,6 +24,31 @@ export default class Ball {
         console.log(this.vx)
     }
 
+
+    paddleCollision(player1, player2){
+        if (this.vx > 0){
+            let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height)
+            let [leftX, rightX, topY, bottomY] = paddle //destructuring array
+            if (
+                (this.x + this.radius >= leftX)
+                && (this.x + this.radius <= rightX)
+                && (this.y >= topY && this.y <= bottomY)
+            ) {
+                this.vx = -this.vx;
+            }
+        } else {
+                let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height)
+                let [leftX, rightX, topY, bottomY] = paddle //destructuring array
+             if (
+                (this.x - this.radius >= leftX)
+                && (this.x - this.radius <= rightX)
+                && (this.y >= topY && this.y <= bottomY)
+            ) {
+                this.vx = -this.vx;
+            }
+        } 
+    }
+
     wallCollision(){
         const hitTop = this.y - this.radius <= 0 // so the ball hits the collision  and doesnt hit the center of the ball
         const hitBottom = this.y + this.radius >= this.boardHeight
@@ -38,20 +63,15 @@ export default class Ball {
         if(hitRight || hitLeft) {
             this.vx = -this.vx
         }
-
     }
 
 
-
-
-
-
-
-    render(svg) {
+    render(svg, player1, player2) {
         this.x += this.vx 
         this.y += this.vy 
     
         this.wallCollision();
+        this.paddleCollision(player1, player2)
 
 
         let circle = document.createElementNS(SVG_NS, 'circle')
