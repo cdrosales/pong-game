@@ -3,6 +3,7 @@ import Board from './Board'
 import Paddle from './Paddle'
 import Ball from './Ball'
 
+
 export default class Game {
   constructor(element, width, height) {
     this.element = element;
@@ -42,11 +43,26 @@ export default class Game {
       KEYS.down
     )
 
-
+      // event listener to pause game 
+      document.addEventListener('keydown', event => {
+        switch(event.key) {
+        case KEYS.spaceBar:
+          this.pause = !this.pause
+          this.player1.speed = 10
+          this.player2.speed = 10
+          console.log(this.pause)
+        }  
+      }) 
     
   }
 
   render() { 
+
+    if (this.pause) {
+      this.player1.speed = 0
+      this.player2.speed = 0
+      return
+    }
 
     // clear board 
    this.gameElement.innerHTML = '' // so canvas doesnt stack on top of each other because of the infinite loop
