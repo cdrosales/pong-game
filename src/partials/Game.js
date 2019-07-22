@@ -68,7 +68,15 @@ export default class Game {
       return
     }
 
-    if (this.player1.score === 20 || this.player2.score === 20){
+    if (this.player1.score === 10 || this.player2.score === 10){
+      this.ball1.radius = 15
+  } else if (this.player1.score === 15 || this.player2.score === 15) {
+      this.ball2.radius = 20
+  } else if (this.player1.score === 20 || this.player2.score === 20) {
+    this.ball3.radius = 25
+  }
+
+    if (this.player1.score === 25 || this.player2.score === 25){
         alert("YOU WIN!!!")
         this.reset()
     }
