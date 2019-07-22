@@ -1,7 +1,7 @@
 import {SVG_NS} from '../settings'
 
 export default class Paddle {
-    constructor(boardHeight,width, height, x, y, up, down) { //coordinates with game.js
+    constructor(boardHeight,width, height, x, y, up, down) { 
         this.boardHeight = boardHeight
         this.width = width
         this.height = height
@@ -9,15 +9,15 @@ export default class Paddle {
         this.y = y
         this.speed = 15
         this.score = 0
-        // let this = this // binding this a variable (this)
 
-        document.addEventListener('keydown', event=>  { // function(eventTHIS was referring to the keydown function
+
+        document.addEventListener('keydown', event=>  { 
             switch(event.key) {
-                case up: // when its up which is defined in settings js 
-                    this.y = Math.max(0,this.y - this.speed) //movement for the paddles -- Math Max puts the limit.
-                break // exit switch statement
+                case up:
+                    this.y = Math.max(0,this.y - this.speed) 
+                break 
                 case down:
-                    this.y = Math.min(this.boardHeight - this.height,this.y + this.speed) //movement for paddle to go down // it will pick one of the two for the limit
+                    this.y = Math.min(this.boardHeight - this.height,this.y + this.speed) 
                 break
             }
         })
@@ -34,11 +34,11 @@ export default class Paddle {
 
     render(svg) {
         let rect = document.createElementNS(SVG_NS, 'rect')
-        rect.setAttributeNS(null,'fill', 'white')  // set Attribute for SVGs specifically
+        rect.setAttributeNS(null,'fill', 'white')  
         rect.setAttributeNS(null, 'width', this.width)
         rect.setAttributeNS(null, 'height', this.height)
-        rect.setAttributeNS(null,'x', this.x) // x of the top left corner
-        rect.setAttributeNS(null,'y', this.y) // y of the top left corner
+        rect.setAttributeNS(null,'x', this.x) 
+        rect.setAttributeNS(null,'y', this.y) 
         svg.appendChild(rect);
     }
 }

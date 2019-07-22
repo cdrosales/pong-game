@@ -6,7 +6,7 @@ export default class Ball {
     this.radius = radius
     this.boardWidth = boardWidth
     this.boardHeight = boardHeight
-    this.direction = 1 // direction of the ball
+    this.direction = 1 
     this.ping = new Audio(pingSound)
     
     this.reset()
@@ -19,26 +19,20 @@ export default class Ball {
         this.y = this.boardHeight/2
 
         this.vy = 0 
-        while(this.vy === 0){ // whenver vy =0
-            this.vy = Math.floor(Math.random() * 10 -5)// generate a random numbber -5 5 //math.floor wont return negatives // math random pics a num ber between 0 and 1        
+        while(this.vy === 0){ 
+            this.vy = Math.floor(Math.random() * 10 -5)
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy)) // be abble to go up or down  
+        this.vx = this.direction * (6 - Math.abs(this.vy)) 
     
         console.log(this.vy)
         console.log(this.vx)
     }
 
 
-
-    // ball collision
-    // find out ball coordinates
-    // the distance between two radius when the balls hit
-    //ball bounces the opposite direction
-
     paddleCollision(player1, player2){
         if (this.vx > 0){
             let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height)
-            let [leftX, rightX, topY, bottomY] = paddle //destructuring array
+            let [leftX, rightX, topY, bottomY] = paddle 
             if (
                 (this.x + this.radius >= leftX)
                 && (this.x + this.radius <= rightX)
@@ -49,7 +43,7 @@ export default class Ball {
             }
         } else {
                 let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height)
-                let [leftX, rightX, topY, bottomY] = paddle //destructuring array
+                let [leftX, rightX, topY, bottomY] = paddle 
              if (
                 (this.x - this.radius >= leftX)
                 && (this.x - this.radius <= rightX)
@@ -62,7 +56,7 @@ export default class Ball {
     }
 
     wallCollision(){
-        const hitTop = this.y - this.radius <= 0 // so the ball hits the collision  and doesnt hit the center of the ball
+        const hitTop = this.y - this.radius <= 0 
         const hitBottom = this.y + this.radius >= this.boardHeight
 
         if(hitTop || hitBottom) {
@@ -105,7 +99,7 @@ export default class Ball {
 
         if(rightGoal) {
             this.goal(player1)
-            this.direction = 1 // 
+            this.direction = 1 
         } else if (leftGoal) {
             this.goal(player2)
             this.direction = -1
