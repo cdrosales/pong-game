@@ -13,7 +13,6 @@ export default class Ball {
     }
 
     
-
     reset() {
         this.x = this.boardWidth/2
         this.y = this.boardHeight/2

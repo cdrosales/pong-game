@@ -67,8 +67,10 @@ export default class Game {
       this.player2.speed = 0
       return
     }
-    if (this.player1.score === 2 || this.player2.score === 2){
-     
+
+    if (this.player1.score === 20 || this.player2.score === 20){
+        alert("YOU WIN!!!")
+        this.reset()
     }
 
    this.gameElement.innerHTML = '' 
