@@ -3,6 +3,7 @@ import Board from './Board'
 import Paddle from './Paddle'
 import Ball from './Ball'
 import Score from './Score'
+import { throws } from 'assert';
 
 export default class Game {
   constructor(element, width, height) {
@@ -11,7 +12,7 @@ export default class Game {
     this.height = height;
 
 
-		this.gameElement = document.getElementById(this.element) // caling div id = "game" from HTML
+	this.gameElement = document.getElementById(this.element) // caling div id = "game" from HTML
   
     // paddle dimensions
     this.paddleWidth = 8
@@ -20,7 +21,7 @@ export default class Game {
 
     this.board = new Board(this.width, this.height) // this is from game in index.js
     this.ball1 = new Ball(8, this.width, this.height)
-    this.ball2 = new Ball(12, this.width, this.height)
+    this.ball2 = new Ball(10, this.width, this.height)
 
 
     //Player 1 Paddle
@@ -47,7 +48,8 @@ export default class Game {
 
     this.score1 = new Score(this.width /2 - 80, 50, 40) // score positioning 
     this.score2 = new Score(this.width /2 + 30, 50, 40)
-        
+
+
 
       // event listener to pause game 
       document.addEventListener('keydown', event => {
@@ -60,6 +62,9 @@ export default class Game {
         }  
       }) 
     
+     
+
+
   }
 
   render() { 
@@ -69,6 +74,12 @@ export default class Game {
       this.player2.speed = 0
       return
     }
+    if (this.player1.score === 2 || this.player2.score === 2){
+     
+    }
+
+
+ 
 
     // clear board g
    this.gameElement.innerHTML = '' // so canvas doesnt stack on top of each other because of the infinite loop

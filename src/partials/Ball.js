@@ -1,5 +1,5 @@
 import {SVG_NS} from '../settings'
-import pingSound from '../../public/sounds/pong-02.wav'
+import pingSound from '../../public/sounds/pong-01.wav'
 
 export default class Ball {
     constructor(radius, boardWidth, boardHeight) {
@@ -11,6 +11,8 @@ export default class Ball {
     
     this.reset()
     }
+
+    
 
     reset() {
         this.x = this.boardWidth/2
@@ -27,6 +29,12 @@ export default class Ball {
     }
 
 
+
+    // ball collision
+    // find out ball coordinates
+    // the distance between two radius when the balls hit
+    //ball bounces the opposite direction
+
     paddleCollision(player1, player2){
         if (this.vx > 0){
             let paddle = player2.coordinates(player2.x, player2.y, player2.width, player2.height)
@@ -38,7 +46,6 @@ export default class Ball {
             ) {
                 this.vx = -this.vx;
                 this.ping.play()
-
             }
         } else {
                 let paddle = player1.coordinates(player1.x, player1.y, player1.width, player1.height)
@@ -53,8 +60,6 @@ export default class Ball {
             }
         } 
     }
-
-
 
     wallCollision(){
         const hitTop = this.y - this.radius <= 0 // so the ball hits the collision  and doesnt hit the center of the ball
@@ -77,8 +82,8 @@ export default class Ball {
         player.score++
         this.reset();
         console.log(player.score)
-    }
-
+        
+    }   
 
 
     render(svg, player1, player2) {
