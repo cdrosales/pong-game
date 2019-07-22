@@ -51,8 +51,8 @@ export default class Game {
         switch(event.key) {
         case KEYS.spaceBar:
           this.pause = !this.pause
-          this.player1.speed = 20
-          this.player2.speed = 20
+          this.player1.speed = 30
+          this.player2.speed = 30
           console.log(this.pause)
         }  
       }) 
